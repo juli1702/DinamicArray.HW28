@@ -1,11 +1,8 @@
 #include <iostream>
-#include <ctime>
-#include <cstdlib>
+#include "Hh.h"
 using namespace std;
-
-void fillArr(int arr[], int len, int min, int max);
 template <typename T> void showArr(T arr[], int len);
-template <typename T> T *resizeArr(T arr[], int len, int n);
+template <typename T> T* resizeArr(T arr[], int len, int n);
 
 int main() {
 	setlocale(LC_ALL, "Russian");
@@ -16,8 +13,8 @@ int main() {
 	int n, m;
 	cout << "Задача 1. Введите длины массивов A и B: ";
 	cin >> n >> m;
-	int *dA = new int[n];
-	int *dB = new int[m];
+	int* dA = new int[n];
+	int* dB = new int[m];
 	fillArr(dA, n, 10, 31);
 	cout << "Изначальный массив A: ";
 	showArr(dA, n);
@@ -25,7 +22,7 @@ int main() {
 	cout << "Изначальный массив B: ";
 	showArr(dB, m);
 	cout << "Новый массив C, длиною " << m + n << ": ";
-	int *dC = new int[n+m];
+	int* dC = new int[n + m];
 	for (int i = 0; i < n; i++)
 		dC[i] = dA[i];
 	for (int i = 0; i < m; i++)
@@ -54,13 +51,6 @@ int main() {
 
 	return 0;
 }
-
-//Функция, которая заполняет динамический массив случайными числами от min до max.
-void fillArr(int arr[], int len, int min, int max) {
-	srand(time(NULL));
-	for (int i = 0; i < len; i++)
-		arr[i] = rand() % (max - min) + min;
-}
 //Функция, которая выводит массив
 template <typename T> void showArr(T arr[], int len) {
 	cout << "[";
@@ -75,13 +65,13 @@ template <typename T> T* resizeArr(T arr[], int len, int n) {
 
 	if (n >= len) {
 		T* tmp = new T[len];
-	for (int i = 0; i < len; i++)
-		tmp[i] = arr[i];
-	delete[] arr;
-	arr = new T[len + n];
-	for (int i = 0; i < len; i++)
-		arr[i] = tmp[i];
-	delete[] tmp;
+		for (int i = 0; i < len; i++)
+			tmp[i] = arr[i];
+		delete[] arr;
+		arr = new T[len + n];
+		for (int i = 0; i < len; i++)
+			arr[i] = tmp[i];
+		delete[] tmp;
 	}
 	return arr;
 
